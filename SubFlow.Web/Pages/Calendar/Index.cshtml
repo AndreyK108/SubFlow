@@ -1,0 +1,167 @@
+﻿@page
+@model SubFlow.Web.Pages.Calendar.IndexModel
+@using Microsoft.Extensions.Localization
+@using SubFlow.Web.Localization
+@inject IStringLocalizer<SharedResource> L
+
+<div class="d-flex align-items-start justify-content-between flex-wrap gap-3 mb-3">
+    <div>
+        <h1 class="mb-1">@L["CalendarTitle"]</h1>
+        <div class="text-muted">@L["CalendarSubtitle"]</div>
+    </div>
+
+    <div class="d-flex gap-2">
+        <a class="btn btn-outline-secondary" asp-page="/Calendar/Index" asp-route-year="@Model.PrevYear" asp-route-month="@Model.PrevMonth">
+            ← @L["PrevMonth"]
+        </a>
+        <a class="btn btn-outline-secondary" asp-page="/Calendar/Index" asp-route-year="@Model.NextYear" asp-route-month="@Model.NextMonth">
+            @L["NextMonth"] →
+        </a>
+    </div>
+</div>
+
+<div class="sf-card p-3 mb-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+        <div class="h5 mb-0">@Model.MonthTitle</div>
+        <div class="text-muted small">@L["CalendarHint"]</div>
+    </div>
+
+    <div class="calendar-grid">
+        @foreach (var d in Model.CalendarDays)
+        {
+            var classes = "calendar-cell";
+            if (!d.IsInMonth) classes += " is-out";
+            if (d.IsToday) classes += " is-today";
+            if (d.Count > 0) classes += " has-events";
+
+            <a class="@classes" asp-page="/Calendar/Index" asp-route-year="@Model.Year" asp-route-month="@Model.Month" asp-route-day="@d.Date.Day">
+                <div class="calendar-daynum">@d.Date.Day</div>
+
+                @if (d.Count > 0)
+                {
+                    <div class="calendar-badge">@d.Count</div>
+                }
+            </a>
+        }
+    </div>
+
+    <div class="calendar-weekdays mt-3">
+        <div>@L["Mon"]</div>
+        <div>@L["Tue"]</div>
+        <div>@L["Wed"]</div>
+        <div>@L["Thu"]</div>
+        <div>@L["Fri"]</div>
+        <div>@L["Sat"]</div>
+        <div>@L["Sun"]</div>
+    </div>
+</div>
+
+<div class="sf-card p-3">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+        <div class="h6 mb-0">@L["UpcomingCharges"]</div>
+        <div class="text-muted small">@Model.SelectedTitle</div>
+    </div>
+
+    @if (Model.SelectedItems.Count == 0)
+    {
+        <div class="text-muted">@L["NoChargesForDay"]</div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-sm align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>@L["Title"]</th>
+                        <th>@L["Service"]</th>
+                        <th class="text-end">@L["Amount"]</th>
+                        <th class="text-end">@L["NextCharge"]</th>
+                        <th class="text-end">@L["Status"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in Model.SelectedItems)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@x.Title</td>
+                            <td class="text-muted">@x.ServiceName</td>
+                            <td class="text-end">@x.Amount @x.Currency</td>
+                            <td class="text-end">@x.NextChargeDate</td>
+                            <td class="text-end">
+                                <span class="badge rounded-pill text-bg-secondary">@x.Status</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<style>
+    /* Мини-календарь (внутри страницы, чтобы не зависеть от site.css) */
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+    }
+
+    .calendar-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+        opacity: .8;
+        font-size: .85rem;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+    }
+
+    .calendar-cell {
+        position: relative;
+        display: block;
+        padding: 12px;
+        min-height: 64px;
+        border-radius: 16px;
+        border: 1px solid var(--sf-border);
+        background: rgba(255,255,255,0.04);
+        color: var(--sf-text);
+        text-decoration: none;
+        transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+
+        .calendar-cell:hover {
+            transform: translateY(-1px);
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(255,255,255,0.14);
+        }
+
+        .calendar-cell.is-out {
+            opacity: .45;
+        }
+
+        .calendar-cell.is-today {
+            outline: 2px solid rgba(13,110,253,0.55);
+            outline-offset: 2px;
+        }
+
+    .calendar-daynum {
+        font-weight: 700;
+    }
+
+    .calendar-badge {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: .75rem;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: rgba(13,110,253,0.18);
+        border: 1px solid rgba(13,110,253,0.35);
+        color: var(--sf-text);
+        font-weight: 600;
+    }
+
+    .calendar-cell.has-events {
+        box-shadow: var(--sf-shadow-sm);
+    }
+</style>

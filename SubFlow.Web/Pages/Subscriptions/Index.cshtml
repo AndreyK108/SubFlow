@@ -1,0 +1,52 @@
+﻿@page
+@model SubFlow.Web.Pages.Subscriptions.IndexModel
+@using Microsoft.Extensions.Localization
+@using SubFlow.Web.Localization
+@inject IStringLocalizer<SharedResource> L
+
+<div class="sf-card">
+    <div class="sf-card-header">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+            <div>
+                <h1 class="sf-title h3 mb-1">@L["Subscriptions"]</h1>
+                <div class="sf-subtitle small">@L["SubscriptionsSubtitle"]</div>
+            </div>
+            <a class="btn btn-primary" asp-page="/Subscriptions/Create">@L["CreateNew"]</a>
+        </div>
+    </div>
+
+    <div class="sf-card-body">
+        @if (Model.Items.Count == 0)
+        {
+            <div class="text-muted">@L["NoItems"]</div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table sf-table align-middle">
+                    <thead>
+                        <tr>
+                            <th>@L["Title"]</th>
+                            <th class="text-end">@L["Amount"]</th>
+                            <th>@L["Period"]</th>
+                            <th>@L["NextCharge"]</th>
+                            <th>@L["Status"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model.Items)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@x.Title</td>
+                                <td class="text-end">@x.Amount @x.Currency</td>
+                                <td>@x.BillingPeriod</td>
+                                <td>@x.NextChargeDate</td>
+                                <td>@x.Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

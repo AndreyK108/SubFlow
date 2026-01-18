@@ -1,0 +1,99 @@
+﻿@page
+@model SubFlow.Web.Pages.Subscriptions.CreateModel
+@using SubFlow.Domain.Enums
+@using Microsoft.Extensions.Localization
+@using SubFlow.Web.Localization
+@inject IStringLocalizer<SharedResource> L
+
+<h1 class="mb-3">@L["CreateSubscription"]</h1>
+
+<form method="post" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="col-12 col-md-6">
+        <label asp-for="Input.ServiceId" class="form-label">@L["Service"]</label>
+        <select asp-for="Input.ServiceId" asp-items="Model.ServiceOptions" class="form-select"></select>
+        <span asp-validation-for="Input.ServiceId" class="text-danger"></span>
+        @if (Model.NoServices)
+        {
+            <div class="form-text text-warning">
+                @L["NoServicesHint"]
+                <a asp-page="/Services/Create">@L["CreateServiceLink"]</a>.
+            </div>
+        }
+    </div>
+
+    <div class="col-12 col-md-6">
+        <label asp-for="Input.Title" class="form-label">@L["Title"]</label>
+        <input asp-for="Input.Title" class="form-control" />
+        <span asp-validation-for="Input.Title" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <label asp-for="Input.Amount" class="form-label">@L["Amount"]</label>
+        <input asp-for="Input.Amount" class="form-control" inputmode="decimal" />
+        <span asp-validation-for="Input.Amount" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-md-2">
+        <label asp-for="Input.Currency" class="form-label">@L["Currency"]</label>
+        <input asp-for="Input.Currency" class="form-control" maxlength="3" />
+        <span asp-validation-for="Input.Currency" class="text-danger"></span>
+        <div class="form-text">@L["CurrencyHint"]</div>
+    </div>
+
+    <div class="col-12 col-md-3">
+        <label asp-for="Input.BillingPeriod" class="form-label">@L["BillingPeriod"]</label>
+        <select asp-for="Input.BillingPeriod" asp-items="Html.GetEnumSelectList<BillingPeriod>()" class="form-select"></select>
+        <span asp-validation-for="Input.BillingPeriod" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-md-3">
+        <label asp-for="Input.BillingPeriodDays" class="form-label">@L["BillingPeriodDays"]</label>
+        <input asp-for="Input.BillingPeriodDays" class="form-control" inputmode="numeric" />
+        <span asp-validation-for="Input.BillingPeriodDays" class="text-danger"></span>
+        <div class="form-text">@L["BillingPeriodDaysHint"]</div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <label asp-for="Input.StartDate" class="form-label">@L["StartDate"]</label>
+        <input asp-for="Input.StartDate" class="form-control" type="date" />
+        <span asp-validation-for="Input.StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 col-md-4 d-flex align-items-end">
+        <div class="form-check">
+            <input asp-for="Input.AutoRenew" class="form-check-input" type="checkbox" />
+            <label asp-for="Input.AutoRenew" class="form-check-label">@L["AutoRenew"]</label>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <label asp-for="Input.TrialEndDate" class="form-label">@L["TrialEndDate"]</label>
+        <input asp-for="Input.TrialEndDate" class="form-control" type="date" />
+        <span asp-validation-for="Input.TrialEndDate" class="text-danger"></span>
+        <div class="form-text">@L["Optional"]</div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <label asp-for="Input.EndDate" class="form-label">@L["EndDate"]</label>
+        <input asp-for="Input.EndDate" class="form-control" type="date" />
+        <span asp-validation-for="Input.EndDate" class="text-danger"></span>
+        <div class="form-text">@L["Optional"]</div>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Input.Notes" class="form-label">@L["Notes"]</label>
+        <textarea asp-for="Input.Notes" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Input.Notes" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">@L["Save"]</button>
+        <a asp-page="/Subscriptions/Index" class="btn btn-outline-secondary">@L["Cancel"]</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

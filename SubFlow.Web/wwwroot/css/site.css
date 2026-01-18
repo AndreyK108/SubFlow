@@ -20,3 +20,263 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* ================
+   SubFlow Premium Bootstrap Theme
+   ================ */
+
+:root {
+    --sf-bg: #f6f7fb;
+    --sf-card: #ffffff;
+    --sf-text: #111827;
+    --sf-muted: #6b7280;
+    --sf-border: rgba(17, 24, 39, 0.08);
+    --sf-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+    --sf-shadow-sm: 0 6px 18px rgba(17, 24, 39, 0.08);
+    --sf-radius: 16px;
+}
+
+.sf-body {
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--sf-bg);
+    color: var(--sf-text);
+}
+
+.sf-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background: rgba(246, 247, 251, 0.75);
+    border-bottom: 1px solid var(--sf-border);
+}
+
+.sf-brand {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-size: 1.1rem;
+}
+
+.sf-navlink {
+    color: var(--sf-muted) !important;
+    font-weight: 500;
+    padding: .5rem .75rem;
+    border-radius: 12px;
+}
+
+    .sf-navlink:hover {
+        background: rgba(17, 24, 39, 0.06);
+        color: var(--sf-text) !important;
+    }
+
+.sf-page {
+    padding-top: 24px;
+    padding-bottom: 48px;
+}
+
+.sf-card {
+    background: var(--sf-card);
+    border: 1px solid var(--sf-border);
+    border-radius: var(--sf-radius);
+    box-shadow: var(--sf-shadow-sm);
+}
+
+.sf-card-header {
+    padding: 18px 18px 0 18px;
+}
+
+.sf-card-body {
+    padding: 18px;
+}
+
+.sf-title {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.sf-subtitle {
+    color: var(--sf-muted);
+}
+
+.sf-table {
+    margin: 0;
+}
+
+    .sf-table thead th {
+        font-size: .85rem;
+        color: var(--sf-muted);
+        font-weight: 600;
+        border-bottom: 1px solid var(--sf-border) !important;
+    }
+
+    .sf-table tbody td {
+        border-top: 1px solid var(--sf-border) !important;
+        vertical-align: middle;
+    }
+
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    box-shadow: 0 10px 24px rgba(13, 110, 253, 0.18);
+}
+
+.form-control, .form-select {
+    border-radius: 14px;
+    border-color: var(--sf-border);
+    padding: .65rem .85rem;
+}
+
+    .form-control:focus, .form-select:focus {
+        box-shadow: 0 0 0 .25rem rgba(13,110,253,.15);
+    }
+
+.sf-footer {
+    border-top: 1px solid var(--sf-border);
+    background: transparent;
+}
+
+/* Sticky footer layout */
+.sf-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.sf-content {
+    flex: 1;
+}
+
+/* =========================
+   Dark theme
+   ========================= */
+:root[data-theme="dark"] {
+    --sf-bg: #0b1220; /* page background */
+    --sf-card: rgba(255,255,255,0.06); /* surfaces */
+    --sf-text: #e5e7eb; /* primary text */
+    --sf-muted: #9ca3af; /* secondary text */
+    --sf-border: rgba(255,255,255,0.10);
+    --sf-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    --sf-shadow-sm: 0 10px 26px rgba(0,0,0,0.35);
+    --sf-input-bg: rgba(255,255,255,0.06);
+    --sf-input-border: rgba(255,255,255,0.14);
+    --sf-input-text: #e5e7eb;
+    --sf-input-placeholder: rgba(229,231,235,0.55);
+}
+
+    /* Page text + background */
+    :root[data-theme="dark"] body {
+        background: var(--sf-bg) !important;
+        color: var(--sf-text) !important;
+    }
+
+    /* Header readability */
+    :root[data-theme="dark"] .sf-header {
+        background: rgba(11, 18, 32, 0.70);
+        border-bottom: 1px solid var(--sf-border);
+    }
+
+    :root[data-theme="dark"] .sf-brand,
+    :root[data-theme="dark"] .navbar-brand {
+        color: var(--sf-text) !important;
+        opacity: 0.95;
+    }
+
+    :root[data-theme="dark"] .sf-navlink,
+    :root[data-theme="dark"] .nav-link {
+        color: rgba(229,231,235,0.78) !important;
+    }
+
+        :root[data-theme="dark"] .sf-navlink:hover,
+        :root[data-theme="dark"] .nav-link:hover {
+            color: var(--sf-text) !important;
+            background: rgba(255,255,255,0.08);
+        }
+
+    /* Cards + subtitles */
+    :root[data-theme="dark"] .sf-card,
+    :root[data-theme="dark"] .card {
+        background: var(--sf-card) !important;
+        border-color: var(--sf-border) !important;
+        color: var(--sf-text) !important;
+    }
+
+    :root[data-theme="dark"] .sf-subtitle,
+    :root[data-theme="dark"] .text-muted {
+        color: var(--sf-muted) !important;
+    }
+
+    /* Tables (Subscriptions/Services list) */
+    :root[data-theme="dark"] table {
+        color: var(--sf-text);
+    }
+
+    :root[data-theme="dark"] thead th {
+        color: rgba(229,231,235,0.80);
+    }
+
+    :root[data-theme="dark"] tbody td {
+        color: rgba(229,231,235,0.92);
+    }
+
+    :root[data-theme="dark"] .table {
+        --bs-table-color: var(--sf-text);
+        --bs-table-bg: transparent;
+        --bs-table-border-color: var(--sf-border);
+        --bs-table-striped-color: var(--sf-text);
+        --bs-table-striped-bg: rgba(255,255,255,0.03);
+        --bs-table-hover-color: var(--sf-text);
+        --bs-table-hover-bg: rgba(255,255,255,0.05);
+    }
+
+    /* Forms: inputs/selects/textarea to dark */
+    :root[data-theme="dark"] .form-control,
+    :root[data-theme="dark"] .form-select,
+    :root[data-theme="dark"] textarea,
+    :root[data-theme="dark"] input,
+    :root[data-theme="dark"] select {
+        background-color: var(--sf-input-bg) !important;
+        color: var(--sf-input-text) !important;
+        border-color: var(--sf-input-border) !important;
+    }
+
+        :root[data-theme="dark"] .form-control::placeholder,
+        :root[data-theme="dark"] textarea::placeholder,
+        :root[data-theme="dark"] input::placeholder {
+            color: var(--sf-input-placeholder) !important;
+        }
+
+        /* Focus ring (premium, soft) */
+        :root[data-theme="dark"] .form-control:focus,
+        :root[data-theme="dark"] .form-select:focus {
+            border-color: rgba(13,110,253,0.55) !important;
+            box-shadow: 0 0 0 .2rem rgba(13,110,253,0.20) !important;
+        }
+
+    /* Dropdown arrow contrast */
+    :root[data-theme="dark"] .form-select {
+        color-scheme: dark;
+    }
+
+    /* Checkbox label */
+    :root[data-theme="dark"] .form-check-label {
+        color: rgba(229,231,235,0.90) !important;
+    }
+
+    /* Links in dark */
+    :root[data-theme="dark"] a {
+        color: rgba(96,165,250,0.95);
+    }
+
+        :root[data-theme="dark"] a:hover {
+            color: rgba(147,197,253,1);
+        }
+
+    /* Footer */
+    :root[data-theme="dark"] .sf-footer,
+    :root[data-theme="dark"] footer {
+        color: rgba(229,231,235,0.55) !important;
+        border-top-color: var(--sf-border) !important;
+    }

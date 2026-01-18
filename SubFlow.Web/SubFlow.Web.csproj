@@ -1,22 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.23" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.23">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<!-- NuGet packages -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.23" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.23">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\SubFlow.Application\SubFlow.Application.csproj" />
-    <ProjectReference Include="..\SubFlow.Infrastructure\SubFlow.Infrastructure.csproj" />
-  </ItemGroup>
+	<!-- Project references -->
+	<ItemGroup>
+		<ProjectReference Include="..\SubFlow.Application\SubFlow.Application.csproj" />
+		<ProjectReference Include="..\SubFlow.Infrastructure\SubFlow.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<!-- Localization resources -->
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\Localization.SharedResource.resx" />
+		<EmbeddedResource Update="Resources\Localization.SharedResource.ru-RU.resx">
+			<DependentUpon>Localization.SharedResource.resx</DependentUpon>
+		</EmbeddedResource>
+	</ItemGroup>
+
 
 </Project>
