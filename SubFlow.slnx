@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="SubFlow.Application/SubFlow.Application.csproj" />
+  <Project Path="SubFlow.Domain/SubFlow.Domain.csproj" />
+  <Project Path="SubFlow.Infrastructure/SubFlow.Infrastructure.csproj" />
+  <Project Path="SubFlow.Web/SubFlow.Web.csproj" />
+</Solution>
