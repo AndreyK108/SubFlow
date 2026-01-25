@@ -11,15 +11,17 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SubFlow.Web.styles.css" asp-append-version="true" />
 </head>
 
-<body class="sf-body">
+<body class="d-flex flex-column min-vh-100">
     <header class="sf-header">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg sf-navbar">
             <div class="container">
-                <a class="navbar-brand fw-bold" asp-page="/Index">@L["AppTitle"]</a>
+                <a class="navbar-brand sf-brand" asp-page="/Index">@L["AppTitle"]</a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sfNav"
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#sfNav"
                         aria-controls="sfNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -43,9 +45,12 @@
                         </li>
 
                         <li class="nav-item ms-lg-2">
-                            <button id="themeToggle" type="button" class="btn btn-sm sf-toggle">
-                                <span class="sf-toggle-ic" aria-hidden="true">🌙</span>
-                                <span class="sf-toggle-txt">Dark</span>
+                            <button id="themeToggle"
+                                    type="button"
+                                    class="sf-theme-toggle"
+                                    aria-label="Toggle theme"
+                                    title="Toggle theme">
+                                <span id="themeIcon" aria-hidden="true">🌙</span>
                             </button>
                         </li>
                     </ul>
@@ -54,14 +59,20 @@
         </nav>
     </header>
 
-    <main class="container sf-main">
-        @RenderBody()
+    <main class="flex-grow-1">
+        <div class="container sf-container py-4">
+            @RenderBody()
+        </div>
     </main>
 
-    <footer class="sf-footer">
-        <div class="container d-flex justify-content-between gap-3 flex-wrap">
-            <div>© @DateTime.Now.Year — @L["AppTitle"]</div>
-            <div><a class="link-secondary text-decoration-none" asp-page="/Privacy">@L["Privacy"]</a></div>
+    <footer class="sf-footer mt-auto">
+        <div class="container d-flex justify-content-between align-items-center gap-3">
+            <div class="sf-footer-left">
+                &copy; 2026 — @L["AppTitle"]
+            </div>
+            <div class="sf-footer-right">
+                <a class="sf-footer-link" asp-page="/Privacy">@L["Privacy"]</a>
+            </div>
         </div>
     </footer>
 

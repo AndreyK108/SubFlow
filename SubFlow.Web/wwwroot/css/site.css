@@ -280,3 +280,49 @@ body {
         color: rgba(229,231,235,0.55) !important;
         border-top-color: var(--sf-border) !important;
     }
+
+/* =========================
+   Theme toggle (icon-only)
+   ========================= */
+.sf-theme-toggle {
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: rgba(255,255,255,.75);
+    box-shadow: 0 10px 22px rgba(0,0,0,.10);
+    backdrop-filter: blur(10px);
+    color: #0f172a;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+}
+
+    .sf-theme-toggle:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(0,0,0,.14);
+    }
+
+    .sf-theme-toggle:active {
+        transform: translateY(0);
+    }
+
+:root[data-theme="dark"] .sf-theme-toggle {
+    border-color: rgba(255,255,255,.16);
+    background: rgba(11,18,32,.55);
+    color: var(--sf-text);
+    box-shadow: 0 16px 34px rgba(0,0,0,.38);
+}
+
+/* Brand visibility on dark */
+:root[data-theme="dark"] .sf-brand {
+    color: var(--sf-text) !important;
+}
+
+    :root[data-theme="dark"] .sf-brand:hover {
+        color: var(--sf-text) !important;
+    }
